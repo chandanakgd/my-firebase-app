@@ -25,12 +25,20 @@ export class AfService {
     });
     // console.log(this.afs.doc<User>(`users/${user.uid}`).valueChanges());
   }
-  loginWithGoogle(){
+  // loginWithGoogle(){
+  //   const provider= new firebase.auth.GoogleAuthProvider();
+  //   this.afAuth.auth.signInWithPopup(provider).then((credential)=>{
+  //     this.updateUser(credential.user);
+  //   });
+  //   this.hide=true;
+  // }
+  loginWithGoogle(cb){
     const provider= new firebase.auth.GoogleAuthProvider();
     this.afAuth.auth.signInWithPopup(provider).then((credential)=>{
       this.updateUser(credential.user);
+      this.hide=true;
     });
-    this.hide=true;
+    cb();
   }
   updateUser(user){
     const userRef:AngularFirestoreDocument<any>=this.afs.doc(`users/${user.uid}`);

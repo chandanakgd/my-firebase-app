@@ -17,9 +17,14 @@ export class LoginComponent implements OnInit {
     //   this.user=user;
     // });
   }
+  // login(){
+  //   this.AfService.loginWithGoogle(); 
+  //   this.router.navigate(['/pageone']); 
+  // }
   login(){
-    this.AfService.loginWithGoogle(); 
-    this.router.navigate(['/pageone']); 
+    this.AfService.loginWithGoogle(()=>{
+      this.router.navigate(['/pageone']);
+    });
   }
   signOut(){
 
